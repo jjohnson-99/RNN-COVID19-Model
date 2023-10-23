@@ -1,6 +1,10 @@
 # RNN-COVID19-Model
 Modeling the association between population mobility and new COVID-19 diagnoses in urban Wisconsin. This was a class project done in collaboration with Kevin Kristensen and Liban Mohamed. This repo contains the resulting pre-print as well a discussion of my contribution to the work. In particular, this discusses the data preparation and the neural networks used.
 
+## To-do
+- [ ] Rewrite models and experiment with the hyperparameters.
+- [ ] Extend with newer data supplied to Google and the COVID-19 data repo.
+
 ## Overview and data preparation
 This project takes using mobility data provided by Google at https://www.google.com/covid19/mobility/ and compares it to documented COVID-19 cases in Wisconsin, found at https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series.
 
