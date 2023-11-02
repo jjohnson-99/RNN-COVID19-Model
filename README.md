@@ -3,6 +3,7 @@ Modeling the association between population mobility and new COVID-19 diagnoses 
 
 ## To-do
 - [ ] Rewrite models and experiment with the hyperparameters.
+- [ ] Consider predicting the 'reproduction rate' of infections rather than number of new counts.
 - [ ] Extend with newer data supplied to Google and the COVID-19 data repo.
 
 ## Overview and data preparation
@@ -16,3 +17,6 @@ For the neural network models, we chose convolutional and recurrent neural netwo
 The neural network models were created using the TensorFlow Keras library. The models were run using Mean Square Error loss functions and ADAM-Optimizer. The models are compared using Mean Absolute Error. We chose to use 16 counties chosen at random as test data, 4 counties as validation data, and 3 counties as test data. It would likely be preferred to split the training, validation, and testing data randomly but was foregone for ease of processing. These windows are created for each county, placed into batches of 32, then shuffled. The models are run over all batches for 20 epochs.
 
 Either model runs over the samples in a slightly different way. For the convolution neural network, the model uses the previous 7 days of data for each prediction. It then slides over for a total of 24 days worth of predictions. We used a recurrent neural network called Long Short Term Memory (LSTM) which stacks layers, making a prediction for each input and maintains memory of each model used before.
+
+## Faults in the model
+The number of new cases should either increase or decrease exponentially. It is not clear whether our models can take this into account. Furthermore, as our model predicts the number of new cases, the prediction should be nonnegative. Yet, this is not the case if we look at examples, as in Figure 2. Considering this, it seems that predicting the reproduction rate of the of infections from one day to another might be more natural. The repoduction rate essentially combines the effects of policy changes, individual changes to avoid infection, the number of people who have already had the disease, the natural propensity for the disease to spread then decline, etc., as any one of these factors will affect how many people are infected. The reproduction rate can also be negative, and will not itself change exponentially. A rewrite of these models might therefore benefit from this change.
